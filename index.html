@@ -3,92 +3,679 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#09090f">
-  <meta name="description" content="KAUE.EDIT — edição de vídeos para YouTube, Shorts, Reels, TikTok e gaming.">
-  <title>KAUE.EDIT — Video Editor</title>
+
+  <title>KAUE.EDIT | Edição de Vídeos</title>
+  <meta name="description" content="Edição de vídeos profissionais para YouTube, TikTok, Shorts e Reels.">
+
   <style>
-    :root{--bg:#09090f;--panel:#12121d;--panel2:#191927;--text:#f7f7fb;--muted:#a5a5b8;--purple:#9b6cff;--pink:#e36bff;--line:rgba(255,255,255,.1)}
-    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 80% 0%,rgba(125,75,220,.17),transparent 34%),var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
-    a{color:inherit;text-decoration:none}.wrap{width:min(1120px,calc(100% - 40px));margin:auto}
-    header{position:sticky;top:0;z-index:10;background:rgba(9,9,15,.82);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
-    nav{height:76px;display:flex;align-items:center;justify-content:space-between}.logo{font-size:22px;font-weight:900;letter-spacing:-1px}.logo span{color:var(--purple)}
-    .navlinks{display:flex;gap:26px;color:var(--muted);font-size:13px}.navlinks a:hover{color:white}
-    .availability{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#b9ffcf;border:1px solid rgba(100,255,160,.28);padding:9px 12px;border-radius:30px}
-    .hero{padding:105px 0 82px;display:grid;grid-template-columns:1.15fr .85fr;gap:55px;align-items:center;min-height:570px}
-    .eyebrow{color:#c5a9ff;text-transform:uppercase;letter-spacing:3px;font-size:11px;font-weight:800}
-    h1{font-size:clamp(46px,7vw,84px);line-height:.98;letter-spacing:-5px;margin:22px 0}.gradient{background:linear-gradient(100deg,#fff 5%,#c5a4ff 55%,#f08bff);-webkit-background-clip:text;background-clip:text;color:transparent}
-    .lead{font-size:17px;line-height:1.8;color:var(--muted);max-width:570px}.actions{display:flex;gap:13px;flex-wrap:wrap;margin-top:30px}
-    .btn{padding:14px 20px;border-radius:10px;font-size:13px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;transition:.2s;border:1px solid var(--line)}
-    .btn.primary{background:linear-gradient(110deg,#8b5cf6,#bd63ed);border:0;color:white;box-shadow:0 10px 35px rgba(139,92,246,.25)}.btn:hover{transform:translateY(-3px)}
-    .hero-card{background:linear-gradient(145deg,rgba(155,108,255,.17),rgba(255,255,255,.025));border:1px solid var(--line);border-radius:22px;padding:14px;transform:rotate(2deg);box-shadow:0 25px 80px rgba(0,0,0,.4)}
-    .screen{aspect-ratio:4/3;border-radius:14px;background:linear-gradient(145deg,#21163a,#11111b 60%,#301b43);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
-    .screen:before,.screen:after{content:"";position:absolute;border:1px solid rgba(255,255,255,.12);border-radius:50%;width:270px;height:270px}.screen:after{width:190px;height:190px}
-    .play{z-index:1;width:70px;height:70px;border-radius:50%;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.35);display:grid;place-items:center;font-size:24px;padding-left:4px;backdrop-filter:blur(8px)}
-    .screen-label{position:absolute;bottom:18px;left:18px;font-size:10px;letter-spacing:2px;color:#d8c8ff}
-    .card-foot{display:flex;justify-content:space-between;padding:15px 5px 3px;color:var(--muted);font-size:11px;letter-spacing:1px}
-    section{padding:75px 0}.section-head{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:30px}.kicker{color:#b994ff;font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase}
-    h2{font-size:clamp(30px,4vw,44px);letter-spacing:-2px;margin:10px 0 0}.section-desc{color:var(--muted);font-size:14px;max-width:430px;line-height:1.7}
-    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.project{background:var(--panel);border:1px solid var(--line);border-radius:16px;overflow:hidden;transition:.25s}.project:hover{transform:translateY(-6px);border-color:rgba(180,140,255,.5)}
-    .thumb{aspect-ratio:16/10;background:linear-gradient(135deg,#24183d,#13131e);display:grid;place-items:center;position:relative;overflow:hidden}
-    .thumb .placeholder{font-size:12px;letter-spacing:2px;color:#cbb8f5;text-align:center;padding:20px}.thumb video{width:100%;height:100%;object-fit:cover;display:block}
-    .project-info{padding:17px}.project-info h3{margin:0 0 7px;font-size:16px}.project-info p{margin:0;color:var(--muted);font-size:12px;line-height:1.6}.tag{display:inline-block;color:#cbb8ff;background:rgba(155,108,255,.12);padding:6px 9px;border-radius:20px;font-size:10px;margin-top:13px}
-    .services{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}.service{padding:22px;background:var(--panel);border:1px solid var(--line);border-radius:14px}.service .num{font-size:11px;color:#b994ff}.service h3{font-size:15px;margin:17px 0 8px}.service p{font-size:12px;color:var(--muted);line-height:1.7;margin:0}
-    .about{display:grid;grid-template-columns:.8fr 1.2fr;gap:45px;align-items:center}.about-box{border:1px solid var(--line);border-radius:18px;padding:28px;background:linear-gradient(145deg,#1b1530,#11111a)}.about-box strong{font-size:48px;letter-spacing:-3px}.about-box span{display:block;color:var(--muted);font-size:12px;margin-top:8px}
-    .about-copy p{color:var(--muted);line-height:1.9;font-size:14px}.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}.chips span{border:1px solid var(--line);padding:8px 11px;border-radius:30px;font-size:11px;color:#d6c8f5}
-    .contact{background:linear-gradient(130deg,rgba(128,82,220,.18),rgba(227,107,255,.07));border:1px solid var(--line);border-radius:22px;padding:45px;text-align:center}.contact p{color:var(--muted);line-height:1.8;max-width:560px;margin:15px auto 25px}
-    footer{border-top:1px solid var(--line);padding:25px 0;color:#77778a;font-size:11px}.footer-inner{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
-    @media(max-width:800px){.hero{grid-template-columns:1fr;padding:75px 0 55px;gap:35px}.hero-card{max-width:520px}.grid{grid-template-columns:repeat(2,1fr)}.services{grid-template-columns:repeat(2,1fr)}.about{grid-template-columns:1fr;gap:25px}.navlinks{gap:13px}.availability{display:none}}
-    @media(max-width:520px){.wrap{width:min(100% - 28px,1120px)}nav{height:65px}.navlinks{font-size:11px;gap:12px}.logo{font-size:19px}.hero{min-height:0}h1{letter-spacing:-3px}.grid{grid-template-columns:1fr}.services{grid-template-columns:1fr 1fr}.section-head{display:block}.section-desc{margin-top:12px}.contact{padding:30px 18px}}
+    :root {
+      --bg: #09080d;
+      --panel: #12101a;
+      --panel2: #191525;
+      --purple: #a855f7;
+      --purple-light: #c084fc;
+      --white: #ffffff;
+      --muted: #aaa4b7;
+      --line: rgba(255,255,255,.09);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .wrap {
+      width: min(1120px, 90%);
+      margin: auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(9,8,13,.92);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 23px;
+      font-weight: 900;
+      letter-spacing: -1px;
+    }
+
+    .logo span {
+      color: var(--purple-light);
+    }
+
+    .links {
+      display: flex;
+      gap: 27px;
+      align-items: center;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .links a:hover {
+      color: var(--purple-light);
+    }
+
+    .hero {
+      min-height: 570px;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse at 75% 40%, rgba(168,85,247,.19), transparent 50%),
+        radial-gradient(ellipse at 10% 90%, rgba(91,33,182,.12), transparent 45%);
+    }
+
+    .hero-content {
+      max-width: 760px;
+      padding: 100px 0;
+    }
+
+    .kicker {
+      color: var(--purple-light);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: 11px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-size: clamp(42px, 7vw, 82px);
+      line-height: .99;
+      letter-spacing: -4px;
+      margin-bottom: 25px;
+    }
+
+    .hero h1 span {
+      color: var(--purple-light);
+    }
+
+    .hero p {
+      max-width: 560px;
+      color: var(--muted);
+      font-size: 16px;
+      margin-bottom: 32px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 13px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 22px;
+      border-radius: 9px;
+      font-weight: bold;
+      font-size: 13px;
+      transition: .2s;
+    }
+
+    .btn-primary {
+      background: var(--purple);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #9333ea;
+      transform: translateY(-3px);
+    }
+
+    .btn-secondary {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.04);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--purple);
+    }
+
+    section {
+      padding: 90px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 25px;
+      margin-bottom: 35px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(30px, 5vw, 46px);
+      letter-spacing: -2px;
+    }
+
+    .section-desc {
+      max-width: 390px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .project {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      overflow: hidden;
+      transition: .25s;
+    }
+
+    .project:hover {
+      transform: translateY(-5px);
+      border-color: rgba(168,85,247,.5);
+    }
+
+    .thumb {
+      aspect-ratio: 9 / 16;
+      max-height: 420px;
+      background: linear-gradient(135deg, #24183d, #13131e);
+      overflow: hidden;
+    }
+
+    .thumb video {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      background: #050509;
+    }
+
+    .project-info {
+      padding: 19px;
+    }
+
+    .project-info h3 {
+      font-size: 16px;
+      margin-bottom: 5px;
+      text-transform: capitalize;
+      overflow-wrap: anywhere;
+    }
+
+    .project-info p {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 13px;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 5px 9px;
+      border-radius: 5px;
+      background: rgba(168,85,247,.13);
+      color: var(--purple-light);
+      font-size: 10px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .gallery-message {
+      grid-column: 1 / -1;
+      padding: 22px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    .services {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 17px;
+    }
+
+    .service {
+      padding: 27px;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      border-radius: 14px;
+    }
+
+    .service .number {
+      color: var(--purple-light);
+      font-size: 12px;
+      font-weight: bold;
+      margin-bottom: 22px;
+    }
+
+    .service h3 {
+      font-size: 19px;
+      margin-bottom: 10px;
+    }
+
+    .service p {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 45px;
+      align-items: center;
+    }
+
+    .about h2 {
+      font-size: clamp(30px, 5vw, 45px);
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    .about p {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+
+    .about-box {
+      min-height: 270px;
+      padding: 35px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border: 1px solid rgba(168,85,247,.3);
+      border-radius: 18px;
+      background:
+        radial-gradient(circle, rgba(168,85,247,.2), transparent 70%),
+        var(--panel);
+    }
+
+    .about-box strong {
+      font-size: 42px;
+      letter-spacing: -2px;
+    }
+
+    .about-box span {
+      color: var(--purple-light);
+    }
+
+    .contact {
+      text-align: center;
+      background: radial-gradient(ellipse at center, rgba(168,85,247,.13), transparent 65%);
+    }
+
+    .contact h2 {
+      font-size: clamp(32px, 6vw, 55px);
+      margin-bottom: 15px;
+      letter-spacing: -2px;
+    }
+
+    .contact p {
+      color: var(--muted);
+      margin-bottom: 27px;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 25px 0;
+      color: var(--muted);
+      font-size: 12px;
+      text-align: center;
+    }
+
+    @media (max-width: 800px) {
+      .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .services {
+        grid-template-columns: 1fr;
+      }
+
+      .about {
+        grid-template-columns: 1fr;
+      }
+
+      .section-head {
+        align-items: start;
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 550px) {
+      nav {
+        flex-direction: column;
+        padding: 17px 0;
+      }
+
+      .links {
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .hero {
+        min-height: 490px;
+      }
+
+      .hero h1 {
+        letter-spacing: -2px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .thumb {
+        max-height: 520px;
+      }
+
+      section {
+        padding: 65px 0;
+      }
+    }
   </style>
 </head>
+
 <body>
-<header><div class="wrap"><nav>
-  <a class="logo" href="#inicio">KAUE<span>.EDIT</span></a>
-  <div class="navlinks"><a href="#trabalhos">Trabalhos</a><a href="#servicos">Serviços</a><a href="#sobre">Sobre</a><a href="#contato">Contato</a></div>
-  <span class="availability">● Disponível para projetos</span>
-</nav></div></header>
+
+<header>
+  <nav class="wrap">
+    <a href="#" class="logo">KAUE<span>.EDIT</span></a>
+
+    <div class="links">
+      <a href="#trabalhos">Trabalhos</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#contato">Contato</a>
+    </div>
+  </nav>
+</header>
 
 <main>
-  <div class="wrap"><section class="hero" id="inicio">
-    <div>
-      <div class="eyebrow">Video editor · Brasil</div>
-      <h1>SEU CONTEÚDO.<br><span class="gradient">OUTRO NÍVEL.</span></h1>
-      <p class="lead">Edição de vídeos pensada para prender a atenção. Cortes dinâmicos, ritmo, legendas e personalidade para YouTube, Shorts, Reels e conteúdo gamer.</p>
-      <div class="actions"><a class="btn primary" href="#trabalhos">VER PORTFÓLIO ↗</a><a class="btn" href="#contato">VAMOS CONVERSAR</a></div>
+
+  <section class="hero">
+    <div class="wrap hero-content">
+      <div class="kicker">Edição de vídeo · Criatividade · Resultado</div>
+
+      <h1>
+        SEU CONTEÚDO.<br>
+        <span>OUTRO NÍVEL.</span>
+      </h1>
+
+      <p>
+        Transformo gravações em vídeos mais dinâmicos, envolventes
+        e prontos para chamar a atenção do seu público.
+      </p>
+
+      <div class="buttons">
+        <a href="#trabalhos" class="btn btn-primary">VER MEUS TRABALHOS</a>
+        <a href="#contato" class="btn btn-secondary">FALE COMIGO</a>
+      </div>
     </div>
-    <div class="hero-card"><div class="screen"><div class="play">▶</div><div class="screen-label">CREATIVE VIDEO EDITING</div></div><div class="card-foot"><span>KAUE.EDIT / SHOWREEL</span><span>2026</span></div></div>
-  </section></div>
+  </section>
 
-  <section id="trabalhos"><div class="wrap">
-    <div class="section-head"><div><div class="kicker">Meu trabalho</div><h2>PROJETOS EM DESTAQUE</h2></div><p class="section-desc">Adicione seus vídeos nos espaços abaixo. Os projetos demonstrativos devem ser identificados como demonstrações até serem substituídos por trabalhos reais.</p></div>
-    <div class="grid">
-      <article class="project"><div class="thumb"><div class="placeholder">ADICIONE SEU VÍDEO 01<br>GAMING / HIGHLIGHTS</div></div><div class="project-info"><h3>Gaming Highlights</h3><p>Cortes, ritmo e momentos marcantes de gameplay.</p><span class="tag">GAMING EDIT</span></div></article>
-      <article class="project"><div class="thumb"><div class="placeholder">ADICIONE SEU VÍDEO 02<br>SHORTS / REELS</div></div><div class="project-info"><h3>Shorts & Reels</h3><p>Conteúdo vertical com legendas e edição dinâmica.</p><span class="tag">SHORT FORM</span></div></article>
-      <article class="project"><div class="thumb"><div class="placeholder">ADICIONE SEU VÍDEO 03<br>YOUTUBE / VLOG</div></div><div class="project-info"><h3>YouTube & Vlogs</h3><p>Narrativa, cortes e acabamento para vídeos longos.</p><span class="tag">LONG FORM</span></div></article>
+  <section id="trabalhos">
+    <div class="wrap">
+
+      <div class="section-head">
+        <div>
+          <div class="kicker">Meu trabalho</div>
+          <h2>MEUS VÍDEOS</h2>
+        </div>
+
+        <p class="section-desc">
+          Confira alguns dos meus trabalhos. Os vídeos enviados
+          para a pasta do portfólio aparecem automaticamente aqui.
+        </p>
+      </div>
+
+      <div class="grid" id="videoGallery">
+        <div class="gallery-message">
+          Carregando vídeos do portfólio...
+        </div>
+      </div>
+
     </div>
-  </div></section>
+  </section>
 
-  <section id="servicos"><div class="wrap">
-    <div class="section-head"><div><div class="kicker">O que eu faço</div><h2>SERVIÇOS</h2></div><p class="section-desc">Soluções de edição para criadores, streamers e marcas que querem publicar conteúdo com mais qualidade.</p></div>
-    <div class="services">
-      <div class="service"><span class="num">01 /</span><h3>Cortes de lives</h3><p>Os melhores momentos transformados em vídeos prontos para publicar.</p></div>
-      <div class="service"><span class="num">02 /</span><h3>Shorts e Reels</h3><p>Vídeos verticais, legendas e ritmo para redes sociais.</p></div>
-      <div class="service"><span class="num">03 /</span><h3>YouTube</h3><p>Edição de vídeos longos, gameplay, comentários e vlogs.</p></div>
-      <div class="service"><span class="num">04 /</span><h3>Gaming</h3><p>Montagens, highlights, memes, efeitos e momentos épicos.</p></div>
+  <section id="servicos">
+    <div class="wrap">
+
+      <div class="section-head">
+        <div>
+          <div class="kicker">O que eu faço</div>
+          <h2>SERVIÇOS</h2>
+        </div>
+      </div>
+
+      <div class="services">
+
+        <article class="service">
+          <div class="number">01 / SHORT FORM</div>
+          <h3>TikTok, Reels e Shorts</h3>
+          <p>
+            Edição de vídeos curtos com cortes dinâmicos,
+            legendas, efeitos e ritmo para redes sociais.
+          </p>
+        </article>
+
+        <article class="service">
+          <div class="number">02 / YOUTUBE</div>
+          <h3>Vídeos para YouTube</h3>
+          <p>
+            Edição de vídeos maiores, cortes, organização
+            das cenas e melhorias na experiência de quem assiste.
+          </p>
+        </article>
+
+        <article class="service">
+          <div class="number">03 / GAMING</div>
+          <h3>Conteúdo Gamer</h3>
+          <p>
+            Highlights, momentos engraçados, gameplay,
+            vídeos de jogos e cortes para streamers.
+          </p>
+        </article>
+
+      </div>
     </div>
-  </div></section>
+  </section>
 
-  <section id="sobre"><div class="wrap about">
-    <div class="about-box"><strong>KAUE<span class="gradient">.EDIT</span></strong><span>EDIÇÃO CRIATIVA · BRASIL</span></div>
-    <div class="about-copy"><div class="kicker">Quem está por trás</div><h2>EDIÇÃO COM<br><span class="gradient">IDENTIDADE.</span></h2><p>Sou editor de vídeo e estou construindo parcerias com criadores de conteúdo. Meu foco é transformar gravações em vídeos envolventes, com atenção ao ritmo, à clareza e ao estilo de cada canal.</p><div class="chips"><span>YouTube</span><span>TikTok</span><span>Instagram</span><span>Gaming</span><span>Shorts</span></div></div>
-  </div></section>
+  <section id="sobre">
+    <div class="wrap about">
 
-  <section id="contato"><div class="wrap"><div class="contact">
-    <div class="kicker">Vamos trabalhar juntos?</div><h2>SEU PRÓXIMO VÍDEO<br><span class="gradient">COMEÇA AQUI.</span></h2>
-    <p>Tem um projeto, canal ou live que precisa de edição? Entre em contato para conversar sobre sua ideia, prazo e orçamento.</p>
-    <a class="btn primary" id="contactButton" href="mailto:SEUEMAIL@EXEMPLO.COM">FALE COMIGO ↗</a>
-  </div></div></section>
+      <div>
+        <div class="kicker">Quem está por trás</div>
+
+        <h2>CRIATIVIDADE QUE VIRA CONTEÚDO.</h2>
+
+        <p>
+          Sou Kaue, editor de vídeos e criador de conteúdo.
+          Meu objetivo é ajudar criadores e canais a apresentarem
+          seus conteúdos de uma maneira mais interessante.
+        </p>
+
+        <p>
+          Trabalho com diferentes estilos de edição, buscando
+          sempre respeitar a identidade de cada criador.
+        </p>
+      </div>
+
+      <div class="about-box">
+        <div>
+          <strong>KAUE<span>.EDIT</span></strong>
+          <p>IDEIAS EM MOVIMENTO.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="contato" class="contact">
+    <div class="wrap">
+
+      <div class="kicker">Vamos trabalhar juntos?</div>
+
+      <h2>SEU PRÓXIMO VÍDEO<br>COMEÇA AQUI.</h2>
+
+      <p>
+        Tem um canal, uma live ou um projeto?
+        Vamos conversar sobre sua próxima edição.
+      </p>
+
+      <div class="buttons" style="justify-content:center">
+        <a
+          href="https://discord.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-primary"
+        >
+          ME CHAME NO DISCORD
+        </a>
+
+        <a
+          href="mailto:SEUEMAIL@EXEMPLO.COM"
+          class="btn btn-secondary"
+        >
+          ENVIAR E-MAIL
+        </a>
+      </div>
+
+    </div>
+  </section>
+
 </main>
-<footer><div class="wrap footer-inner"><span>© 2026 KAUE.EDIT — Todos os direitos reservados.</span><span>Feito para transformar conteúdo em experiência.</span></div></footer>
+
+<footer>
+  <div class="wrap">
+    © 2026 KAUE.EDIT — Todos os direitos reservados.
+  </div>
+</footer>
+
+<script>
+async function carregarVideos() {
+  const galeria = document.getElementById("videoGallery");
+
+  const api =
+    "https://api.github.com/repos/kaue013286/siteportoflio/contents/assets/videos?ref=main";
+
+  try {
+    const resposta = await fetch(api);
+
+    if (!resposta.ok) {
+      throw new Error("Erro ao consultar o GitHub: " + resposta.status);
+    }
+
+    const arquivos = await resposta.json();
+
+    const videos = arquivos
+      .filter(arquivo =>
+        arquivo.type === "file" &&
+        /\.(mp4|webm|ogg)$/i.test(arquivo.name)
+      )
+      .sort((a, b) =>
+        a.name.localeCompare(b.name, "pt-BR", { numeric: true })
+      );
+
+    galeria.innerHTML = "";
+
+    if (videos.length === 0) {
+      const aviso = document.createElement("div");
+      aviso.className = "gallery-message";
+
+      aviso.textContent =
+        "Ainda não encontrei vídeos compatíveis. Coloque arquivos MP4, WebM ou OGG dentro da pasta assets/videos do GitHub.";
+
+      galeria.appendChild(aviso);
+      return;
+    }
+
+    videos.forEach((arquivo, indice) => {
+      const projeto = document.createElement("article");
+      projeto.className = "project";
+
+      const thumb = document.createElement("div");
+      thumb.className = "thumb";
+
+      const video = document.createElement("video");
+      video.controls = true;
+      video.playsInline = true;
+      video.preload = "metadata";
+      video.src = arquivo.download_url;
+      video.setAttribute("aria-label", "Vídeo " + arquivo.name);
+
+      const info = document.createElement("div");
+      info.className = "project-info";
+
+      const titulo = document.createElement("h3");
+      titulo.textContent = arquivo.name
+        .replace(/\.[^.]+$/, "")
+        .replace(/[-_]/g, " ");
+
+      const descricao = document.createElement("p");
+      descricao.textContent = "Trabalho do portfólio · " + (indice + 1);
+
+      const tag = document.createElement("span");
+      tag.className = "tag";
+      tag.textContent = "VIDEO EDIT";
+
+      thumb.appendChild(video);
+      info.append(titulo, descricao, tag);
+      projeto.append(thumb, info);
+
+      galeria.appendChild(projeto);
+    });
+
+  } catch (erro) {
+    console.error("Erro ao carregar vídeos:", erro);
+
+    galeria.innerHTML = "";
+
+    const aviso = document.createElement("div");
+    aviso.className = "gallery-message";
+
+    aviso.textContent =
+      "Não consegui carregar os vídeos. Verifique se o repositório é público e se os arquivos estão na pasta assets/videos da branch main.";
+
+    galeria.appendChild(aviso);
+  }
+}
+
+carregarVideos();
+</script>
+
 </body>
 </html>
